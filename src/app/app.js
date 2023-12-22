@@ -8,14 +8,11 @@ import session from 'express-session';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import { Strategy as PassportStrategy } from "passport-strategy";
+import { __dirname } from '../utils.js';
 
 import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import { init } from './socket.servidor.js';
-
-// Utiliza `import.meta.url` para obtener la URL del módulo actual
-const __filename = new URL(import.meta.url).pathname;
-const __dirname = path.dirname(__filename);
 
 import homeRouter from '../Router/home.router.js';
 import chatRouter from '../Router/chat.router.js';
@@ -36,18 +33,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/src', express.static(path.join(__dirname, 'src')));
-app.use(express.static(path.join(__dirname, '..', 'public', 'css')));
+app.use(express.static(path.join(__dirname, '..', 'public', 'css', 'styles.css')));
 app.use(express.static(path.join(__dirname, '..', 'public')));
+
+app.engine('handlebars', handlebars.engine());
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'handlebars');
 
 app.use('/home', homeRouter);
 app.use('/chat', chatRouter);
 app.use('/login', UserRegisterRouter);
 app.use('/register', RegisterRouter);
 app.use('/products', productRouter);
-
-app.engine('handlebars', handlebars.engine());
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'handlebars');
 
 app.use(session({ secret: COOKIE_SECRET, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
@@ -113,12 +110,10 @@ const startServer = async () => {
     try {
         // Establece la conexión a la base de datos
         await LoginRepo();
-
         // Inicia el servidor después de establecer la conexión
         const httpServer = app.listen(8080, () => {
             console.log('Server ON PORT 8080');
         });
-
         // Inicia otros servicios (si es necesario)
         init(httpServer);
     } catch (error) {
