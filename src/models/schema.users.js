@@ -13,3 +13,4 @@ userSchema.index({ email: 1 }, { unique: true });
 const UserModel = mongoose.model('User', userSchema);
 
 export default UserModel;
+

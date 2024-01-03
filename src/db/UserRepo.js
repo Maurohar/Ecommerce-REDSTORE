@@ -44,6 +44,25 @@ class UserRepo {
             throw error;
         }
     }
+
+    
+    async getUserByEmail(username) {
+        try {
+            await this.connect();
+
+            return await UserModel.findOne({email:username})
+                .then((user)=>{
+                    console.log(user);
+                    return user;
+                })         
+                .catch((err)=>{
+                    console.log(err);
+                });  
+        } catch (error) {
+            console.error('Error al guardar usuario:', error);
+            throw error;
+        }
+    }
 }
 
 export default UserRepo;

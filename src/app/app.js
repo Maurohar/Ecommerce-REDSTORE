@@ -8,7 +8,7 @@ import session from 'express-session';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import { Strategy as PassportStrategy } from "passport-strategy";
-import { __dirname } from '../utils.js';
+import { __dirname, createHash, isValidPassword } from '../utils.js';
 
 import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
@@ -21,8 +21,17 @@ import cookieRouter from '../Router/cookie.router.js';
 import UserRegisterRouter from '../Router/login.router.js';
 import RegisterRouter from '../Router/register.router.js';
 import productRouter from '../Router/products.router.js';
+import routes from '../Router/products.router.js';
+
 import LoginRepo from '../db/UserRepo.js';
+import CartRepo from '../db/CartRepo.js';
+import connectDB from '../db/ProductRepo.js';
+connectDB();
+
+
+
 import User from '../models/schema.users.js';
+import CartModel from '../models/schema.cart.js'
 
 const app = express();
 
@@ -39,12 +48,16 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 app.engine('handlebars', handlebars.engine());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
+app.set('view engine', 'ejs');
+
+app.use('/', routes);
 
 app.use('/home', homeRouter);
 app.use('/chat', chatRouter);
 app.use('/login', UserRegisterRouter);
 app.use('/register', RegisterRouter);
 app.use('/products', productRouter);
+app.use('/cart', cartRouter);
 
 app.use(session({ secret: COOKIE_SECRET, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
@@ -58,7 +71,7 @@ app.post('/register', passport.authenticate('local', {
 }));
 
 app.post('/login', passport.authenticate('local', {
-    successRedirect: '/dashboard',
+    successRedirect: '/home',
     failureRedirect: '/login',
     failureFlash: true,
 }));
@@ -126,4 +139,3 @@ const httpServer = app.listen(8080, () => {
 });
 
 init(httpServer);
-

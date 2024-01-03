@@ -21,10 +21,10 @@
             <div class="col-4">
                 <div class="card">
                     <img src="../images/product-1.jpg" alt="Product Image">
-                    <h4 class="title">Red Printed T-shirt</h4>
-                    <p class="price">$50.00</p>
+                    <h class="title"><%= product.title %> Red Printed T-shirt</h>
+                    <div class="price">Price: <strong><%= product.price %></strong></div>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <button onclick="addToCart('<%= product.id %>')">Add to Cart</button>
                 </div>
             </div>
 
@@ -33,9 +33,9 @@
                 <div class="card">
                     <img src="../images/product-2.jpg" alt="Product Image">
                     <h4 class="title">Black Shoes</h4>
-                    <p class="price">$50.00</p>
+                    <p class="price">$45.00</p>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <button onclick="addToCart(${product.id})">Add to Cart</button>
                 </div>
             </div>
 
@@ -43,69 +43,83 @@
                 <div class="card">
                     <img src="../images/product-3.jpg" alt="Product Image">
                     <h4 class="title">Black Shoes</h4>
-                    <p class="price">$50.00</p>
+                    <p class="price">$35.00</p>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <form method="post" action="/cart">
+                    <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </form>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="card">
                     <img src="../images/product-4.jpg" alt="Product Image">
-                    <h4 class="title">Black Shoes</h4>
-                    <p class="price">$50.00</p>
+                    <h4 class="title">Blue Printed T-shirt</h4>
+                    <p class="price">$36.00</p>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <form method="post" action="/cart">
+                        <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </form>
                 </div>
             </div>
             
             <div class="col-4">
                 <div class="card">
                     <img src="../images/product-5.jpg" alt="Product Image">
-                    <h4 class="title">Black Shoes</h4>
-                    <p class="price">$50.00</p>
+                    <h4 class="title">Grey Sport Shoes</h4>
+                    <p class="price">25.00</p>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <form method="post" action="/cart">
+                        <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </form>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="card">
                     <img src="../images/product-6.jpg" alt="Product Image">
-                    <h4 class="title">Black Shoes</h4>
-                    <p class="price">$50.00</p>
+                    <h4 class="title">Black & Grey T-Shirt</h4>
+                    <p class="price">28.00</p>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <form method="post" action="/cart">
+                        <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </form>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="card">
                     <img src="../images/product-7.jpg" alt="Product Image">
-                    <h4 class="title">Black Shoes</h4>
-                    <p class="price">$50.00</p>
+                    <h4 class="title">Sockets Shoes</h4>
+                    <p class="price">$33.00</p>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <form method="post" action="/cart">
+                        <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </form>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="card">
                     <img src="../images/product-8.jpg" alt="Product Image">
-                    <h4 class="title">Black Shoes</h4>
-                    <p class="price">$50.00</p>
+                    <h4 class="title">Black Watch FONN</h4>
+                    <p class="price">$19.00</p>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <form method="post" action="/cart">
+                        <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </form>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="card">
                     <img src="../images/product-9.jpg" alt="Product Image">
-                    <h4 class="title">Black Shoes</h4>
-                    <p class="price">$50.00</p>
+                    <h4 class="title">Black Watch</h4>
+                    <p class="price">$36.00</p>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <form method="post" action="/cart">
+                        <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </form>
                 </div>
             </div>
 
@@ -113,33 +127,38 @@
             <div class="col-4">
                 <div class="card">
                     <img src="../images/product-10.jpg" alt="Product Image">
-                    <h4 class="title">Black Shoes</h4>
-                    <p class="price">$50.00</p>
+                    <h4 class="title">Black & Red Shoes</h4>
+                    <p class="price">$55.00</p>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <form method="post" action="/cart">
+                        <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </form>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="card">
                     <img src="../images/product-11.jpg" alt="Product Image">
-                    <h4 class="title">Black Shoes</h4>
-                    <p class="price">$50.00</p>
+                    <h4 class="title">Grey Shoes</h4>
+                    <p class="price">$15.00</p>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <form method="post" action="/cart">
+                        <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </form>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="card">
                     <img src="../images/product-12.jpg" alt="Product Image">
-                    <h4 class="title">Black Shoes</h4>
-                    <p class="price">$50.00</p>
+                    <h4 class="title">Black Sport Pants</h4>
+                    <p class="price">$26.00</p>
                     <p>Details about the product go here.</p>
-                    <button>Add to Cart</button>
+                    <form method="post" action="/cart">
+                        <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </form>
                 </div>
             </div>
-
         </div>
     </div>
 </body>
