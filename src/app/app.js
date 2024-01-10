@@ -50,8 +50,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 app.set('view engine', 'ejs');
 
-app.use('/', routes);
-
 app.use('/home', homeRouter);
 app.use('/chat', chatRouter);
 app.use('/login', UserRegisterRouter);

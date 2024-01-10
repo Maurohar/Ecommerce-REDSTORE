@@ -42,6 +42,7 @@ class CartRepo {
             throw error;
         }
     }
+    
 }
 
 export default CartRepo;

@@ -8,20 +8,18 @@ const productSchema = new Schema({
         required: true,
         unique: true,
     },
-    img: {
-        type: String,
+    price: {
+        type: Number,
         required: true,
     },
     inCart: {
         type: Boolean,
         default: false,
     },
-    price: {
-        type: Number,
-        required: true,
-    },
 });
 
-let Product = model("Product", productSchema);
+productSchema.index({ name: 1 }, { unique: true });
+const Product = model("Product", productSchema);
 
-export default Product;
+export default productSchema;
+

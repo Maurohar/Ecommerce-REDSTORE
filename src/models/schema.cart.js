@@ -1,28 +1,11 @@
-// Deberías exportar el modelo, no el esquema directamente
-
 import mongoose from 'mongoose';
 
-const CartSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    img: {
-        type: String,
-        required: true,
-    },
-    amount: {
-        type: Number,
-        required: true,
-    },
-    price: {
-        type: Number,
-        required: true,
-    },
+
+const cartSchema = new mongoose.Schema({
+    product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+    quantity: Number,
 });
 
-// Exporta el modelo, no el esquema directamente
-let Cart = mongoose.model('Cart', CartSchema);
+const CartItem = mongoose.model('Cart', cartSchema);
 
-export default Cart;
+export default CartItem;
