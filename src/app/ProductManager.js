@@ -1,4 +1,5 @@
-import { MongoClient } from 'mongodb';
+/* import { MongoClient } from 'mongodb';
+import ProductRepo from '../db/ProductRepo.js'
 
 class Product {
   constructor(title, description, price, thumbnail, code, stock) {
@@ -77,6 +78,21 @@ class ProductManager {
     }
   }
 
+  static async showCalifications(id) {
+    try {
+      const calificaciones = await studentSchema
+        .findById(id)
+        .populate("calification")
+        .exec();
+
+      console.log(calificaciones);
+      return calificaciones;
+    } catch (error) {
+      console.error(error);
+      throw new Error("Error al obtener las calificaciones");
+    }
+  }
+
   removeProductById(id) {
     console.log(id);
     const indexToRemove = this.products.findIndex(product => product.id === id);
@@ -126,8 +142,9 @@ class ProductManager {
   } 
   getAllProducts() {
     return this.products;
-  }
+  }x
 }
 
 export default ProductManager;
 
+ */

@@ -1,4 +1,4 @@
-import express from 'express';
+/* import express from 'express';
 import { v4 as uuidV4 } from 'uuid';
 import fs from 'fs/promises';
 
@@ -70,3 +70,4 @@ router.get('/carts/:cId', async (req, res) => {
 });
 
 export default router;
+ */

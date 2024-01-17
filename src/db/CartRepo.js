@@ -28,11 +28,34 @@ class CartRepo {
         });
     }
 
+    async createEmptyCart(){
+        try{
+            await this.connect();
+            let newCartItem = await CartRepo.save();
+            return newCartItem;
+        }
+        catch (error) {
+            console.error('Error al crear carrito:', error);
+            throw error;
+        }
+    }
+
+    async getCartByUsername(username){
+        try{
+            await this.connect();
+            let existingCart = await CartRepo.find(username);
+            return existingCart;
+        }
+        catch (error) {
+            console.error('Error al agregar producto al carrito:', error);
+            throw error;
+        }
+    }
+
     async addToCart(cartData) {
         try {
             await this.connect();
 
-            const newCartItem = new CartModel(cartData);
             const savedCartItem = await newCartItem.save();
 
             console.log('Producto agregado al carrito correctamente:', savedCartItem);
@@ -41,6 +64,11 @@ class CartRepo {
             console.error('Error al agregar producto al carrito:', error);
             throw error;
         }
+    }
+
+    async save(cart){
+        await this.connect();
+        await CartRepo.save(cart);
     }
     
 }

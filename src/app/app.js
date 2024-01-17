@@ -9,6 +9,7 @@ import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import { Strategy as PassportStrategy } from "passport-strategy";
 import { __dirname, createHash, isValidPassword } from '../utils.js';
+/* import configPassport from '../config/passport.config.js'; */
 
 import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
@@ -62,60 +63,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.post('/register', passport.authenticate('local', {
-    successRedirect: '/home',
-    failureRedirect: '/register',
-    failureFlash: true,
-}));
-
-app.post('/login', passport.authenticate('local', {
-    successRedirect: '/home',
-    failureRedirect: '/login',
-    failureFlash: true,
-}));
-
-passport.use(new LocalStrategy(
-    { usernameField: 'email' },
-    async (email, password, done) => {
-        try {
-            console.log('Llegué hasta la estrategia local');
-            const user = await User.findOne({ email });
-
-            if (!user) {
-                console.log('Email no encontrado');
-                return done(null, false, { message: 'Email no encontrado' });
-            }
-
-            const isPasswordValid = await user.comparePassword(password);
-
-            if (!isPasswordValid) {
-                console.log('Contraseña incorrecta');
-                return done(null, false, { message: 'Contraseña incorrecta' });
-            }
-
-            console.log('Usuario autenticado exitosamente');
-            return done(null, user);
-        } catch (error) {
-            console.error(`Error en la consulta a la base de datos: ${error}`);
-            return done(error);
-        }
-    }
-));
-
-passport.serializeUser((user, done) => {
-    console.log('Serializando usuario');
-    done(null, user.id);
-});
-
-passport.deserializeUser(async (id, done) => {
-    try {
-        console.log('Deserializando usuario');
-        const user = await User.findById(id);
-        done(null, user);
-    } catch (error) {
-        done(error);
-    }
-});
 
 const startServer = async () => {
     try {
